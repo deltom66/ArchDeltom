@@ -66,8 +66,8 @@ sgdisk -a 2048 -o ${DISK} # new gpt disk 2048 alignment
 # create partitions
 sgdisk -n 1::+1M --typecode=1:ef02 --change-name=1:'BIOSBOOT' ${DISK} # partition 1 (BIOS Boot Partition)
 sgdisk -n 2::+300M --typecode=2:ef00 --change-name=2:'EFIBOOT' ${DISK} # partition 2 (UEFI Boot Partition)
-sgdisk -n 3::+1G --typecode=2:8200 --change-name=3:'SWAP' ${DISK} # partition 3 (SWAP Partition), default start
-sgdisk -n 4::-0 --typecode=3:8300 --change-name=4:'ROOT' ${DISK} # partition 4 (Root), default start, remaining
+sgdisk -n 3::+1G --typecode=3:8200 --change-name=3:'SWAP' ${DISK} # partition 3 (SWAP Partition)
+sgdisk -n 4::-0 --typecode=4:8300 --change-name=4:'ROOT' ${DISK} # partition 4 (Root), default start, remaining
 if [[ ! -d "/sys/firmware/efi" ]]; then
     sgdisk -A 1:set:1 ${DISK}
 fi
