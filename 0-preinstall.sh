@@ -64,9 +64,10 @@ sgdisk -Z ${DISK} # zap all on disk
 sgdisk -a 2048 -o ${DISK} # new gpt disk 2048 alignment
 
 # create partitions
-sgdisk -n 1::+300M --typecode=2:ef00 --change-name=1:'EFIBOOT' ${DISK} # partition 1 (UEFI Boot Partition)
-sgdisk -n 2::+1G --typecode=2:8200 --change-name=2:'SWAP' ${DISK} # partition 2 (SWAP Partition), default start
-sgdisk -n 3::-0 --typecode=3:8300 --change-name=3:'ROOT' ${DISK} # partition 3 (Root), default start, remaining
+sgdisk -n 1::+1M --typecode=1:ef02 --change-name=1:'BIOSBOOT' ${DISK} # partition 1 (BIOS Boot Partition)
+sgdisk -n 2::+300M --typecode=2:ef00 --change-name=2:'EFIBOOT' ${DISK} # partition 2 (UEFI Boot Partition)
+sgdisk -n 3::+1G --typecode=2:8200 --change-name=3:'SWAP' ${DISK} # partition 3 (SWAP Partition), default start
+sgdisk -n 4::-0 --typecode=3:8300 --change-name=4:'ROOT' ${DISK} # partition 4 (Root), default start, remaining
 if [[ ! -d "/sys/firmware/efi" ]]; then
     sgdisk -A 1:set:1 ${DISK}
 fi
@@ -74,18 +75,18 @@ fi
 # make filesystems
 echo -e "\nCreating Filesystems...\n$HR"
 if [[ ${DISK} =~ "nvme" ]]; then
-mkfs.vfat -F32 -n "EFIBOOT" "${DISK}p1"
-mkswap -L "SWAP" "${DISK}p2" -f
-swapon "${DISK}p2"
-mkfs.btrfs -L "ROOT" "${DISK}p3" -f
-mount -t btrfs "${DISK}p3" /mnt
+mkfs.vfat -F32 -n "EFIBOOT" "${DISK}p2"
+mkswap -L "SWAP" "${DISK}p3" -f
+swapon "${DISK}p3"
+mkfs.btrfs -L "ROOT" "${DISK}p4" -f
+mount -t btrfs "${DISK}p4" /mnt
 
 else
-mkfs.vfat -F32 -n "EFIBOOT" "${DISK}1"
-mkswap -L "SWAP" "${DISK}p2" -f
-swapon "${DISK}p2"
-mkfs.btrfs -L "ROOT" "${DISK}3" -f
-mount -t btrfs "${DISK}3" /mnt
+mkfs.vfat -F32 -n "EFIBOOT" "${DISK}2"
+mkswap -L "SWAP" "${DISK}3" -f
+swapon "${DISK}3"
+mkfs.btrfs -L "ROOT" "${DISK}4" -f
+mount -t btrfs "${DISK}4" /mnt
 fi
 ls /mnt | xargs btrfs subvolume delete
 btrfs subvolume create /mnt/@
