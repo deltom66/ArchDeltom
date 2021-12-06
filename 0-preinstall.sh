@@ -34,7 +34,7 @@ echo -e " ▒████▒  █     █░     █   █  █   ▒█ █    
 echo -e " ▓▒  ▒▓  █     ▓█  ▓  █   █  █  ▒█░ ▓▓  █    █░     █░   █▓ ▓█  █ █ █ 
 echo -e " █░  ░█  █      ▓██▒  █   █  ████▒   ███▒    ▒██    ▒██   ███   █ █ █                                                                      
 echo -e "-------------------------------------------------------------------------"
-echo -e "-Setting up $iso mirrors for faster downloads"
+echo -e "-Setting up mirrors for faster downloads"
 echo -e "-------------------------------------------------------------------------"
 
 reflector --latest 20 --protocol https --country India,Germany,Singapore --sort rate --save /etc/pacman.d/mirrorlist
