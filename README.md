@@ -1,5 +1,7 @@
 # Deltom Installer Script
 
+<html src="https://github.com/deltom66/ArchDeltom/blob/main/archdeltom.html" />
+
 This README contains the steps I do to install and configure a fully-functional Arch Linux installation containing a desktop environment, all the support packages (network, bluetooth, audio, printers, etc.), along with all my preferred applications and utilities. The shell scripts in this repo allow the entire process to be automated.)
 
 ---
@@ -13,9 +15,9 @@ From initial Prompt type the following commands:
 
 ```
 pacman -Sy git
-git clone https://github.com/
-cd 
-./
+git clone https://github.com/deltom66/ArchDeltom/
+cd ArchDeltom
+./archdeltom.sh
 ```
 
 ### System Description
