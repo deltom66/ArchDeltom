@@ -18,7 +18,7 @@ echo "-------------------------------------------------"
 iso=$(curl -4 ifconfig.co/country-iso)
 timedatectl set-ntp true
 pacman -S --noconfirm pacman-contrib terminus-font
-setfont ter-v22b
+setfont ter-v16b
 sed -i 's/^#Para/Para/' /etc/pacman.conf
 pacman -S --noconfirm reflector rsync grub
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
@@ -69,7 +69,7 @@ sgdisk -n 2::+300M --typecode=2:ef00 --change-name=2:'EFIBOOT' ${DISK} # partiti
 sgdisk -n 3::+1G --typecode=3:8200 --change-name=3:'SWAP' ${DISK} # partition 3 (SWAP Partition)
 sgdisk -n 4::-0 --typecode=4:8300 --change-name=4:'ROOT' ${DISK} # partition 4 (Root), default start, remaining
 if [[ ! -d "/sys/firmware/efi" ]]; then
-    sgdisk -A 1:set:1 ${DISK}
+    sgdisk -A 1:set:2 ${DISK}
 fi
 
 # make filesystems
