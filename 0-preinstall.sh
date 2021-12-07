@@ -104,7 +104,7 @@ esac
 mount -t btrfs -o subvol=@ -L ROOT /mnt
 mkdir /mnt/boot
 mkdir /mnt/boot/efi
-mount -t vfat -L EFIBOOT /mnt/boot/efi
+mount -t vfat -L EFIBOOT /mnt/boot/
 
 if ! grep -qs '/mnt' /proc/mounts; then
     echo "Drive is not mounted can not continue"
