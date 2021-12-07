@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash
 #-------------------------------------------------------------------------
 #                       █                    ███                        
 #   ██                 █      ████▒           █      █                 
@@ -18,9 +18,9 @@ echo "--------------------------------------"
 echo "-- GRUB EFI Bootloader Install&Check--"
 echo "--------------------------------------"
 if [[ -d "/sys/firmware/efi" ]]; then
-    grub-install --efi-directory=/boot/efi ${DISK}
+    grub-install --efi-directory=/boot ${DISK}
 fi
-grub-mkconfig -o /boot/efi/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # ------------------------------------------------------------------------
 

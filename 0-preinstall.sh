@@ -126,7 +126,7 @@ echo "--------------------------------------"
 echo "--GRUB BIOS Bootloader Install&Check--"
 echo "--------------------------------------"
 if [[ ! -d "/sys/firmware/efi" ]]; then
-    grub-install --boot-directory=/mnt/boot/efi ${DISK}
+    grub-install --boot-directory=/mnt/boot ${DISK}
 fi
 #echo "--------------------------------------"
 #echo "-- Check for low memory systems <8G --"
