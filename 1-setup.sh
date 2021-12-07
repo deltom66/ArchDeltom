@@ -168,6 +168,7 @@ PKGS=(
 'patch'
 'picom'
 'pkgconf'
+'packagekit'
 'plasma-meta'
 'plasma-nm'
 'powerdevil'
